@@ -49,22 +49,26 @@ native bool TF2Attrib_SetFromStringValue(int iEntity, const char[] strAttrib, co
  *
  * @param iEntity		Entity index to get attribute from. Must have m_AttributeList.
  * @param strAttrib		Name of the attribute, as from the "name" key in items_game.
+ * @param pAttrib		Address64 to store the attribute address to.
  *
- * @return				Address of the attribute on the entity, or Address_Null if the attribute does not exist on the entity.
+ * @noreturn
  * @error				Invalid entity index or attribute name passed.
  */
-native Address TF2Attrib_GetByName(int iEntity, const char[] strAttrib);
+native void TF2Attrib_GetByName(int iEntity, const char[] strAttrib, any pAttrib[2]);
+//native Address TF2Attrib_GetByName(int iEntity, const char[] strAttrib);
 
 /**
  * Returns the address of an attribute (by attribute index) on an entity.
  *
  * @param iEntity		Entity index to get attribute from. Must have m_AttributeList.
  * @param iDefIndex		Definition index of the attribute, as from the number on the attribute entry in items_game.
+ * @param pAttrib		Address64 to store the attribute address to.
  *
- * @return				Address of the attribute on the entity, or Address_Null if the attribute does not exist on the entity.
+ * @noreturn
  * @error				Invalid entity index or attribute index passed.
  */
-native Address TF2Attrib_GetByDefIndex(int iEntity, int iDefIndex);
+native void TF2Attrib_GetByDefIndex(int iEntity, int iDefIndex, any pAttrib[2]);
+//native Address TF2Attrib_GetByDefIndex(int iEntity, int iDefIndex);
 
 /**
  * Removes an attribute from an entity.
@@ -116,12 +120,12 @@ native bool TF2Attrib_ClearCache(int iEntity);
  * Warning, this changes what GetByName/ID and SetByName 'see' as the name of the attribute,
  * but will only change attribute's effects if TF2Attrib_ClearCache is called on the entity with the attribute after.
  *
- * @param pAttrib		Address of the attribute.
+ * @param pAttrib		Address64 of the attribute.
  * @param iDefIndex		Value to set m_iAttributeDefinitionIndex to.
  *
  * @noreturn
  */
-native void TF2Attrib_SetDefIndex(Address pAttrib, int iDefIndex);
+native void TF2Attrib_SetDefIndex(any pAttrib[2], int iDefIndex);
 
 /**
  * Returns the value of m_iAttributeDefinitionIndex (the attribute ID) on an attribute.
@@ -130,26 +134,26 @@ native void TF2Attrib_SetDefIndex(Address pAttrib, int iDefIndex);
  *
  * @return				The integer value of m_iAttributeDefinitionIndex on the attribute.
  */
-native int TF2Attrib_GetDefIndex(Address pAttrib);
+native int TF2Attrib_GetDefIndex(any pAttrib[2]);
 
 /**
  * Sets the value of m_flValue on an attribute.
  *
- * @param pAttrib		Address of the attribute.
+ * @param pAttrib		Address64 of the attribute.
  * @param flValue		Value to set m_flValue to.
  *
  * @noreturn
  */
-native void TF2Attrib_SetValue(Address pAttrib, float flValue);
+native void TF2Attrib_SetValue(any pAttrib[2], float flValue);
 
 /**
  * Returns the value of m_flValue on an attribute.
  *
- * @param pAttrib		Address of the attribute.
+ * @param pAttrib		Address64 of the attribute.
  *
  * @return				The floating point value of m_flValue on the attribute.
  */
-native float TF2Attrib_GetValue(Address pAttrib);
+native float TF2Attrib_GetValue(any pAttrib[2]);
 
 /**
  * Returns the string data from its raw value representation (a CAttribute_String instance).
@@ -168,21 +172,21 @@ native int TF2Attrib_UnsafeGetStringValue(any pRawValue, char[] buffer, int maxl
 /**
  * Sets the value of m_nRefundableCurrency on an attribute.
  *
- * @param pAttrib		Address of the attribute.
+ * @param pAttrib		Address64 of the attribute.
  * @param nCurrency		Value to set m_nRefundableCurrency to.
  *
  * @noreturn
  */
-native void TF2Attrib_SetRefundableCurrency(Address pAttrib, int nCurrency);
+native void TF2Attrib_SetRefundableCurrency(any pAttrib[2], int nCurrency);
 
 /**
  * Returns the value of m_nRefundableCurrency on an attribute.
  *
- * @param pAttrib		Address of the attribute.
+ * @param pAttrib		Address64 of the attribute.
  *
  * @return				The (unsigned) integer value of m_nRefundableCurrency on the attribute.
  */
-native int TF2Attrib_GetRefundableCurrency(Address pAttrib);
+native int TF2Attrib_GetRefundableCurrency(any pAttrib[2]);
 
 /**
  * Returns an array containing the attributes (as indices) present on an entity.
