@@ -12,6 +12,6 @@ jobs:
       with:
         version: '1.11.x'
     - name: Compile tf2attributes
-      run: spcomp scripting/tf2attributes.sp
+      run: spcomp scripting/tf2attributes_64.sp
     - name: Compile example
       run: spcomp -iscripting/include scripting/tf2attributes_example.sp
